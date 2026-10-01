@@ -1,5 +1,11 @@
 # Kestirimci Bakım: Turbofan Motor RUL Tahmini
 
+![CI](https://github.com/BartuPacall/rul-prediction/actions/workflows/ci.yml/badge.svg)
+
+**Canlı API:** https://rul-prediction-urk9.onrender.com/docs
+
+> Ücretsiz planda servis uykuya geçer, ilk istek 30-60 saniye sürebilir.
+
 Bu proje, turbofan motorlarının sensör verilerini kullanarak **Remaining Useful Life (RUL)** değerini, yani motorun arızalanmadan önce kaç çevrim daha çalışabileceğini tahmin etmeyi amaçlamaktadır.
 
 Çalışmada NASA'nın **C-MAPSS FD001** veri seti kullanılmış ve farklı makine öğrenmesi ve derin öğrenme yaklaşımları karşılaştırılmıştır.
