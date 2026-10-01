@@ -53,3 +53,5 @@ for epoch in range(1, EPOCHS + 1):
 
 print("LSTM son RMSE:", round(float(rmse), 2))
 print("LSTM NASA skoru:", round(nasa_score(y_test, pred), 1))
+torch.save(model.state_dict(), "models/lstm.pt")
+print("Model kaydedildi: models/lstm.pt")

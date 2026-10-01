@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import os
+import joblib
 from sklearn.preprocessing import MinMaxScaler
 from data import load_fd, add_rul, constant_cols
 
@@ -14,6 +16,9 @@ def prepare(seq_len=SEQ_LEN):
 
     scaler = MinMaxScaler()
     train[feats] = scaler.fit_transform(train[feats])
+    
+    os.makedirs("models", exist_ok=True)
+    joblib.dump({"scaler": scaler, "feats": feats}, "models/scaler.joblib")
 
     # Her motor için 30 satırlık kayan pencereler
     X_train, y_train = [], []
