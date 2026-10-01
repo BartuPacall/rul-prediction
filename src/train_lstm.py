@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from features import prepare
+from metrics import nasa_score
 
 torch.manual_seed(42)
 np.random.seed(42)
@@ -51,3 +52,4 @@ for epoch in range(1, EPOCHS + 1):
     print(f"Epoch {epoch:2d}  Test RMSE: {rmse:.2f}")
 
 print("LSTM son RMSE:", round(float(rmse), 2))
+print("LSTM NASA skoru:", round(nasa_score(y_test, pred), 1))

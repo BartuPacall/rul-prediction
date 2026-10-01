@@ -40,3 +40,9 @@ xgb.fit(X_train, y_train)
 pred_xgb = xgb.predict(X_test)
 rmse_xgb = np.sqrt(mean_squared_error(y_test, pred_xgb))
 print("XGBoost RMSE:", round(rmse_xgb, 2))
+
+
+# 7. NASA skoru
+from metrics import nasa_score
+print("Random Forest NASA skoru:", round(nasa_score(y_test, pred), 1))
+print("XGBoost NASA skoru:", round(nasa_score(y_test, pred_xgb), 1))
