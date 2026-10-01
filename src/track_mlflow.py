@@ -13,10 +13,9 @@ with mlflow.start_run(run_name="lstm-fd001"):
         "rul_cap": 125,
     })
 
-    # BURAYA README'deki gerçek değerlerini yaz
     mlflow.log_metrics({
-        "rmse": 0.0,
-        "nasa_score": 0.0,
+        "rmse": 13.11,
+        "nasa_score": 275.5,
     })
 
     mlflow.log_artifact("models/lstm.pt")

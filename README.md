@@ -192,3 +192,49 @@ SHAP analizini çalıştırmak için:
 ```bash
 python src/explain.py
 ```
+
+
+## Proje 2: MLOps Paketleme
+
+Eğitilen LSTM modeli bir REST API olarak sunuldu ve Docker ile paketlendi.
+
+**Canlı API:** https://rul-prediction-urk9.onrender.com/docs
+
+### Neler yapıldı
+
+* **FastAPI:** `/predict` (30 çevrim x 14 sensör alır, RUL döndürür) ve `/health` uç noktaları
+* **Pydantic:** Girdi doğrulama, yanlış boyutta veri 422 hatası döner
+* **pytest:** API için 3 test (sağlık kontrolü, doğru boyut, yanlış boyut)
+* **Docker:** `python:3.12-slim` tabanlı imaj, CPU sürümü PyTorch
+* **CI:** GitHub Actions her push'ta testleri çalıştırır ve Docker imajını derler
+* **Deploy:** Render (ücretsiz plan)
+* **MLflow:** Parametreler, metrikler ve model dosyaları kaydedildi
+
+### Yerelde çalıştırma
+
+```bash
+docker build -t rul-api .
+docker run -p 8000:8000 rul-api
+```
+
+Sonra tarayıcıda `http://127.0.0.1:8000/docs` adresini aç.
+
+### Testleri çalıştırma
+
+```bash
+python -m pytest tests -v
+```
+
+### Deney takibi
+
+```bash
+python src/track_mlflow.py
+mlflow ui
+```
+
+### Sınırlılıklar
+
+* Ücretsiz planda servis 15 dakika kullanılmazsa uykuya geçer, ilk istek 30-60 saniye sürebilir.
+* Model yalnızca FD001 verisiyle eğitildi.
+* Veri kayması (drift) izleme eklenmedi.
+* MLflow kaydı eğitim scriptine entegre değil, sonuçlar `track_mlflow.py` ile elle girildi.
