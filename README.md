@@ -226,6 +226,7 @@ python -m pytest tests -v
 ```
 
 ### Deney takibi
+![MLflow](reports/mlflow.png)
 
 ```bash
 python src/track_mlflow.py
